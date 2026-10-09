@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.kotlin.Robot
 class Prueba(val robot: Robot): NextOpMode(robot) {
     val gp = CommandGamepad(gamepad1)
     override fun start() {
-        robot.chassis.manejar(gp).schedule()
+        robot.chassis.startDrive(gamepad1)
     }
 
     override fun end() {

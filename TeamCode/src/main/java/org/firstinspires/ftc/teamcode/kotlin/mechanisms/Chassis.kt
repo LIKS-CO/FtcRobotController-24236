@@ -1,36 +1,28 @@
 package org.firstinspires.ftc.teamcode.kotlin.mechanisms
 
+import com.qualcomm.robotcore.hardware.Gamepad
 import dev.nextftc.hardware.actuators.NextMotor
 import dev.nextftc.robot.Mechanism
+import dev.nextftc.robot.drive.mecanumDrive
 import dev.nextftc.robot.triggers.CommandGamepad
 
 class Chassis: Mechanism {
     val lf = NextMotor("LF")
-    val lb = NextMotor("LB")
+    val lb = NextMotor("LB").apply {direction = NextMotor.Direction.REVERSE }
     val rf = NextMotor("RF")
-    val rb = NextMotor("RB")
+    val rb = NextMotor("RB").apply {direction = NextMotor.Direction.REVERSE }
+    val inta = NextMotor("in")
 
-
-    fun manejar(gp: CommandGamepad) = infinite {
-        var x = gp.rightStickX.value
-        var y = gp.rightStickY.value
-        var z = gp.leftStickX.value
-
-        var lfPower = x + y +z
-        var rfPower = x - y - z
-        var lbPower = x - y + z
-        var rbPower = x + y - z
-
-        lf.throttle = lfPower
-        rf.throttle = rfPower
-        lb.throttle = lbPower
-        rb.throttle = rbPower
-
+    fun startDrive(gamepad: Gamepad) {
+        mecanumDrive(lf, rf, lb, rb, gamepad).schedule()
     }
     fun parar()= instant {
         lf.throttle = 0.0
         lb.throttle = 0.0
         rf.throttle = 0.0
         rb.throttle = 0.0
+    }
+    fun moveinta()= infinite {
+
     }
 }
