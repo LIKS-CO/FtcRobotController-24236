@@ -12,9 +12,12 @@ class Prueba(val robot: Robot): NextOpMode(robot) {
     val gp = CommandGamepad(gamepad1)
     override fun start() {
         robot.chassis.startDrive(gamepad1)
+        gp.a.onTrue(robot.intake.girar())
+        gp.a.onFalse(robot.intake.pararint())
     }
 
     override fun end() {
         robot.chassis.parar()
+        robot.intake.pararint().schedule()
     }
 }

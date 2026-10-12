@@ -22,7 +22,5 @@ class Chassis: Mechanism {
         rf.throttle = 0.0
         rb.throttle = 0.0
     }
-    fun moveinta()= infinite {
 
-    }
 }
