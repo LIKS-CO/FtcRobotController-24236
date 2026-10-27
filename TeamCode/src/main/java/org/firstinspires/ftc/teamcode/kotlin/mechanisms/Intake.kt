@@ -4,10 +4,10 @@ import dev.nextftc.hardware.actuators.NextMotor
 import dev.nextftc.robot.Mechanism
 
 class Intake: Mechanism {
-    val intake = NextMotor("intake")
+    val intake = NextMotor("intake").apply {direction = NextMotor.Direction.REVERSE}
 
     fun girar()= infinite {
-        intake.throttle = 0.2
+        intake.throttle = 0.5
     }
     fun pararint()= instant {
         intake.throttle = 0.0

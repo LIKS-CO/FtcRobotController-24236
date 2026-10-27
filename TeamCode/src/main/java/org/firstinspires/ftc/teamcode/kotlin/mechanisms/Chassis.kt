@@ -11,7 +11,6 @@ class Chassis: Mechanism {
     val lb = NextMotor("LB").apply {direction = NextMotor.Direction.REVERSE }
     val rf = NextMotor("RF")
     val rb = NextMotor("RB").apply {direction = NextMotor.Direction.REVERSE }
-    val inta = NextMotor("in")
 
     fun startDrive(gamepad: Gamepad) {
         mecanumDrive(lf, rf, lb, rb, gamepad).schedule()

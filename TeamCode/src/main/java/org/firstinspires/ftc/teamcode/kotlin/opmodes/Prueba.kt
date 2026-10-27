@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.kotlin.opmodes
 
-import android.R
-import dev.nextftc.robot.Telemetry
 import dev.nextftc.robot.opmode.NextOpMode
 import dev.nextftc.robot.opmode.NextTeleop
 import dev.nextftc.robot.triggers.CommandGamepad
@@ -14,10 +12,13 @@ class Prueba(val robot: Robot): NextOpMode(robot) {
         robot.chassis.startDrive(gamepad1)
         gp.a.onTrue(robot.intake.girar())
         gp.a.onFalse(robot.intake.pararint())
+        gp.b.onTrue(robot.shooter.disparar())
+        gp.b.onFalse(robot.shooter.altoAlFuego())
     }
 
     override fun end() {
         robot.chassis.parar()
         robot.intake.pararint().schedule()
+        robot.shooter.altoAlFuego().schedule()
     }
 }
