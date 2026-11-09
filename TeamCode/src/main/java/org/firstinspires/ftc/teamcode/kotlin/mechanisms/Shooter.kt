@@ -5,9 +5,8 @@ import dev.nextftc.robot.Mechanism
 
 class Shooter: Mechanism {
     val shooter = NextMotor("shooter")
-
     fun disparar()= infinite {
-        shooter.throttle = 0.9
+        shooter.throttle = 1.0
     }
     fun altoAlFuego()= instant {
         shooter.throttle = 0.0
